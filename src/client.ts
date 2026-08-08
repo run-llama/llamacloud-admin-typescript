@@ -29,16 +29,12 @@ import {
 import {
   Project,
   ProjectCreateParams,
-  ProjectCreateResponse,
   ProjectDeleteParams,
   ProjectGetParams,
-  ProjectGetResponse,
   ProjectListParams,
-  ProjectListResponse,
-  ProjectListResponsesPaginatedCursor,
   ProjectUpdateParams,
-  ProjectUpdateResponse,
   Projects,
+  ProjectsPaginatedCursor,
 } from './resources/projects';
 import {
   Admin,
@@ -829,11 +825,7 @@ export declare namespace LlamaCloudAdmin {
   export {
     Projects as Projects,
     type Project as Project,
-    type ProjectCreateResponse as ProjectCreateResponse,
-    type ProjectUpdateResponse as ProjectUpdateResponse,
-    type ProjectListResponse as ProjectListResponse,
-    type ProjectGetResponse as ProjectGetResponse,
-    type ProjectListResponsesPaginatedCursor as ProjectListResponsesPaginatedCursor,
+    type ProjectsPaginatedCursor as ProjectsPaginatedCursor,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,

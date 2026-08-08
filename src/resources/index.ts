@@ -31,14 +31,10 @@ export {
 export {
   Projects,
   type Project,
-  type ProjectCreateResponse,
-  type ProjectUpdateResponse,
-  type ProjectListResponse,
-  type ProjectGetResponse,
   type ProjectCreateParams,
   type ProjectUpdateParams,
   type ProjectListParams,
   type ProjectDeleteParams,
   type ProjectGetParams,
-  type ProjectListResponsesPaginatedCursor,
+  type ProjectsPaginatedCursor,
 } from './projects';

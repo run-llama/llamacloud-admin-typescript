@@ -51,18 +51,14 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/projects.ts">Project</a></code>
-- <code><a href="./src/resources/projects.ts">ProjectCreateResponse</a></code>
-- <code><a href="./src/resources/projects.ts">ProjectUpdateResponse</a></code>
-- <code><a href="./src/resources/projects.ts">ProjectListResponse</a></code>
-- <code><a href="./src/resources/projects.ts">ProjectGetResponse</a></code>
 
 Methods:
 
-- <code title="post /api/v2/projects">client.projects.<a href="./src/resources/projects.ts">create</a>({ ...params }) -> ProjectCreateResponse</code>
-- <code title="put /api/v2/projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(projectID, { ...params }) -> ProjectUpdateResponse</code>
-- <code title="get /api/v2/projects">client.projects.<a href="./src/resources/projects.ts">list</a>({ ...params }) -> ProjectListResponsesPaginatedCursor</code>
+- <code title="post /api/v2/projects">client.projects.<a href="./src/resources/projects.ts">create</a>({ ...params }) -> Project</code>
+- <code title="put /api/v2/projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">update</a>(projectID, { ...params }) -> Project</code>
+- <code title="get /api/v2/projects">client.projects.<a href="./src/resources/projects.ts">list</a>({ ...params }) -> ProjectsPaginatedCursor</code>
 - <code title="delete /api/v2/projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(projectID, { ...params }) -> void</code>
-- <code title="get /api/v2/projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(projectID, { ...params }) -> ProjectGetResponse</code>
+- <code title="get /api/v2/projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(projectID, { ...params }) -> Project</code>
 
 # Invites
 
@@ -101,13 +97,13 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/admin/users.ts">UserGetClaimsResponse</a></code>
-- <code><a href="./src/resources/admin/users.ts">UserUpdateClaimsResponse</a></code>
+- <code><a href="./src/resources/admin/users.ts">CustomClaims</a></code>
+- <code><a href="./src/resources/admin/users.ts">UserClaims</a></code>
 
 Methods:
 
-- <code title="get /api/v1/admin/users/{user_id}/claims">client.admin.users.<a href="./src/resources/admin/users.ts">getClaims</a>(userID) -> UserGetClaimsResponse</code>
-- <code title="patch /api/v1/admin/users/{user_id}/claims">client.admin.users.<a href="./src/resources/admin/users.ts">updateClaims</a>(userID, { ...params }) -> UserUpdateClaimsResponse</code>
+- <code title="get /api/v1/admin/users/{user_id}/claims">client.admin.users.<a href="./src/resources/admin/users.ts">getClaims</a>(userID) -> UserClaims</code>
+- <code title="patch /api/v1/admin/users/{user_id}/claims">client.admin.users.<a href="./src/resources/admin/users.ts">updateClaims</a>(userID, { ...params }) -> UserClaims</code>
 
 ## UsageMetrics
 

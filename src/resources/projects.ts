@@ -11,7 +11,7 @@ export class Projects extends APIResource {
   /**
    * Create a new project in the given organization.
    */
-  create(params: ProjectCreateParams, options?: RequestOptions): APIPromise<ProjectCreateResponse> {
+  create(params: ProjectCreateParams, options?: RequestOptions): APIPromise<Project> {
     const { organization_id, ...body } = params;
     return this._client.post('/api/v2/projects', { query: { organization_id }, body, ...options });
   }
@@ -19,11 +19,7 @@ export class Projects extends APIResource {
   /**
    * Update an existing project.
    */
-  update(
-    projectID: string,
-    params: ProjectUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<ProjectUpdateResponse> {
+  update(projectID: string, params: ProjectUpdateParams, options?: RequestOptions): APIPromise<Project> {
     const { organization_id, ...body } = params;
     return this._client.put(path`/api/v2/projects/${projectID}`, {
       query: { organization_id },
@@ -39,11 +35,8 @@ export class Projects extends APIResource {
   list(
     query: ProjectListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<ProjectListResponsesPaginatedCursor, ProjectListResponse> {
-    return this._client.getAPIList('/api/v2/projects', PaginatedCursor<ProjectListResponse>, {
-      query,
-      ...options,
-    });
+  ): PagePromise<ProjectsPaginatedCursor, Project> {
+    return this._client.getAPIList('/api/v2/projects', PaginatedCursor<Project>, { query, ...options });
   }
 
   /**
@@ -69,154 +62,17 @@ export class Projects extends APIResource {
     projectID: string,
     query: ProjectGetParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<ProjectGetResponse> {
+  ): APIPromise<Project> {
     return this._client.get(path`/api/v2/projects/${projectID}`, { query, ...options });
   }
 }
 
-export type ProjectListResponsesPaginatedCursor = PaginatedCursor<ProjectListResponse>;
+export type ProjectsPaginatedCursor = PaginatedCursor<Project>;
 
 /**
- * Schema for a project.
+ * API response schema for a project.
  */
 export interface Project {
-  /**
-   * Unique identifier
-   */
-  id: string;
-
-  name: string;
-
-  /**
-   * The Organization ID the project is under.
-   */
-  organization_id: string;
-
-  /**
-   * Creation datetime
-   */
-  created_at?: string | null;
-
-  /**
-   * Whether this project is the default project for the user.
-   */
-  is_default?: boolean;
-
-  /**
-   * Update datetime
-   */
-  updated_at?: string | null;
-}
-
-/**
- * API response schema for a project.
- */
-export interface ProjectCreateResponse {
-  /**
-   * The project's unique identifier.
-   */
-  id: string;
-
-  /**
-   * The project's display name.
-   */
-  name: string;
-
-  /**
-   * The organization the project belongs to.
-   */
-  organization_id: string;
-
-  /**
-   * Creation datetime
-   */
-  created_at?: string | null;
-
-  /**
-   * Whether this project is the default project for its organization.
-   */
-  is_default?: boolean;
-
-  /**
-   * Update datetime
-   */
-  updated_at?: string | null;
-}
-
-/**
- * API response schema for a project.
- */
-export interface ProjectUpdateResponse {
-  /**
-   * The project's unique identifier.
-   */
-  id: string;
-
-  /**
-   * The project's display name.
-   */
-  name: string;
-
-  /**
-   * The organization the project belongs to.
-   */
-  organization_id: string;
-
-  /**
-   * Creation datetime
-   */
-  created_at?: string | null;
-
-  /**
-   * Whether this project is the default project for its organization.
-   */
-  is_default?: boolean;
-
-  /**
-   * Update datetime
-   */
-  updated_at?: string | null;
-}
-
-/**
- * API response schema for a project.
- */
-export interface ProjectListResponse {
-  /**
-   * The project's unique identifier.
-   */
-  id: string;
-
-  /**
-   * The project's display name.
-   */
-  name: string;
-
-  /**
-   * The organization the project belongs to.
-   */
-  organization_id: string;
-
-  /**
-   * Creation datetime
-   */
-  created_at?: string | null;
-
-  /**
-   * Whether this project is the default project for its organization.
-   */
-  is_default?: boolean;
-
-  /**
-   * Update datetime
-   */
-  updated_at?: string | null;
-}
-
-/**
- * API response schema for a project.
- */
-export interface ProjectGetResponse {
   /**
    * The project's unique identifier.
    */
@@ -289,11 +145,7 @@ export interface ProjectGetParams {
 export declare namespace Projects {
   export {
     type Project as Project,
-    type ProjectCreateResponse as ProjectCreateResponse,
-    type ProjectUpdateResponse as ProjectUpdateResponse,
-    type ProjectListResponse as ProjectListResponse,
-    type ProjectGetResponse as ProjectGetResponse,
-    type ProjectListResponsesPaginatedCursor as ProjectListResponsesPaginatedCursor,
+    type ProjectsPaginatedCursor as ProjectsPaginatedCursor,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,

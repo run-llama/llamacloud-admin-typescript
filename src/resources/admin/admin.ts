@@ -9,7 +9,7 @@ import {
   UsageMetrics,
 } from './usage-metrics';
 import * as UsersAPI from './users';
-import { UserGetClaimsResponse, UserUpdateClaimsParams, UserUpdateClaimsResponse, Users } from './users';
+import { CustomClaims, UserClaims, UserUpdateClaimsParams, Users } from './users';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
@@ -266,8 +266,8 @@ export declare namespace Admin {
 
   export {
     Users as Users,
-    type UserGetClaimsResponse as UserGetClaimsResponse,
-    type UserUpdateClaimsResponse as UserUpdateClaimsResponse,
+    type CustomClaims as CustomClaims,
+    type UserClaims as UserClaims,
     type UserUpdateClaimsParams as UserUpdateClaimsParams,
   };
 

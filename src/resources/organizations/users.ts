@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as ProjectsAPI from '../projects';
 import * as OrganizationsAPI from './organizations';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
@@ -107,7 +106,41 @@ export type UserAddResponse = Array<OrganizationsAPI.OrganizationMember>;
 
 export type UserAddToProjectResponse = unknown;
 
-export type UserListProjectsResponse = Array<ProjectsAPI.Project>;
+export type UserListProjectsResponse = Array<UserListProjectsResponse.UserListProjectsResponseItem>;
+
+export namespace UserListProjectsResponse {
+  /**
+   * Schema for a project.
+   */
+  export interface UserListProjectsResponseItem {
+    /**
+     * Unique identifier
+     */
+    id: string;
+
+    name: string;
+
+    /**
+     * The Organization ID the project is under.
+     */
+    organization_id: string;
+
+    /**
+     * Creation datetime
+     */
+    created_at?: string | null;
+
+    /**
+     * Whether this project is the default project for the user.
+     */
+    is_default?: boolean;
+
+    /**
+     * Update datetime
+     */
+    updated_at?: string | null;
+  }
+}
 
 export type UserRemoveFromProjectResponse = unknown;
 

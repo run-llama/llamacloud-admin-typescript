@@ -16,12 +16,12 @@ export class Users extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.admin.users.getClaims(
+   * const userClaims = await client.admin.users.getClaims(
    *   'user_id',
    * );
    * ```
    */
-  getClaims(userID: string, options?: RequestOptions): APIPromise<UserGetClaimsResponse> {
+  getClaims(userID: string, options?: RequestOptions): APIPromise<UserClaims> {
     return this._client.get(path`/api/v1/admin/users/${userID}/claims`, options);
   }
 
@@ -39,7 +39,7 @@ export class Users extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.admin.users.updateClaims(
+   * const userClaims = await client.admin.users.updateClaims(
    *   'user_id',
    * );
    * ```
@@ -48,95 +48,52 @@ export class Users extends APIResource {
     userID: string,
     body: UserUpdateClaimsParams,
     options?: RequestOptions,
-  ): APIPromise<UserUpdateClaimsResponse> {
+  ): APIPromise<UserClaims> {
     return this._client.patch(path`/api/v1/admin/users/${userID}/claims`, { body, ...options });
   }
 }
 
 /**
- * A user's fully resolved custom claims after applying system defaults.
+ * Custom claims that dictate various limits or allowed behaviors. Currently these
+ * claims reside at a per user level. Claims may expand to a per organization level
+ * or project in the future.
  */
-export interface UserGetClaimsResponse {
+export interface CustomClaims {
   /**
-   * The user's resolved custom claims.
+   * Whether the user is allowed to delete organizations.
    */
-  claims: UserGetClaimsResponse.Claims;
+  allow_org_deletion?: boolean;
 
   /**
-   * The user ID the claims belong to.
+   * Whether the user is allowed to create organizations.
    */
-  user_id: string;
-}
+  allowed_org_creation?: boolean;
 
-export namespace UserGetClaimsResponse {
   /**
-   * The user's resolved custom claims.
+   * Whether the user is allowed to access API data sources.
    */
-  export interface Claims {
-    /**
-     * Whether the user is allowed to delete organizations.
-     */
-    allow_org_deletion?: boolean;
+  api_datasource_access?: boolean;
 
-    /**
-     * Whether the user is allowed to create organizations.
-     */
-    allowed_org_creation?: boolean;
-
-    /**
-     * Whether the user is allowed to access API data sources.
-     */
-    api_datasource_access?: boolean;
-
-    /**
-     * Cap on how many organizations this user may create. None means unlimited. Only
-     * enforced when allowed_org_creation is True.
-     */
-    maximum_org_creation?: number | null;
-  }
+  /**
+   * Cap on how many organizations this user may create. None means unlimited. Only
+   * enforced when allowed_org_creation is True.
+   */
+  maximum_org_creation?: number | null;
 }
 
 /**
  * A user's fully resolved custom claims after applying system defaults.
  */
-export interface UserUpdateClaimsResponse {
+export interface UserClaims {
   /**
    * The user's resolved custom claims.
    */
-  claims: UserUpdateClaimsResponse.Claims;
+  claims: CustomClaims;
 
   /**
    * The user ID the claims belong to.
    */
   user_id: string;
-}
-
-export namespace UserUpdateClaimsResponse {
-  /**
-   * The user's resolved custom claims.
-   */
-  export interface Claims {
-    /**
-     * Whether the user is allowed to delete organizations.
-     */
-    allow_org_deletion?: boolean;
-
-    /**
-     * Whether the user is allowed to create organizations.
-     */
-    allowed_org_creation?: boolean;
-
-    /**
-     * Whether the user is allowed to access API data sources.
-     */
-    api_datasource_access?: boolean;
-
-    /**
-     * Cap on how many organizations this user may create. None means unlimited. Only
-     * enforced when allowed_org_creation is True.
-     */
-    maximum_org_creation?: number | null;
-  }
 }
 
 export interface UserUpdateClaimsParams {
@@ -191,8 +148,8 @@ export namespace UserUpdateClaimsParams {
 
 export declare namespace Users {
   export {
-    type UserGetClaimsResponse as UserGetClaimsResponse,
-    type UserUpdateClaimsResponse as UserUpdateClaimsResponse,
+    type CustomClaims as CustomClaims,
+    type UserClaims as UserClaims,
     type UserUpdateClaimsParams as UserUpdateClaimsParams,
   };
 }

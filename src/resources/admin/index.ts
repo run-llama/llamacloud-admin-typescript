@@ -16,9 +16,4 @@ export {
   type UsageMetricAggregateParams,
   type UsageMetricExportParams,
 } from './usage-metrics';
-export {
-  Users,
-  type UserGetClaimsResponse,
-  type UserUpdateClaimsResponse,
-  type UserUpdateClaimsParams,
-} from './users';
+export { Users, type CustomClaims, type UserClaims, type UserUpdateClaimsParams } from './users';
