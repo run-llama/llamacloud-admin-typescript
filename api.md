@@ -19,19 +19,19 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/organizations/users.ts">UserListResponse</a></code>
 - <code><a href="./src/resources/organizations/users.ts">UserAddResponse</a></code>
 - <code><a href="./src/resources/organizations/users.ts">UserAddToProjectResponse</a></code>
+- <code><a href="./src/resources/organizations/users.ts">UserListMembersResponse</a></code>
 - <code><a href="./src/resources/organizations/users.ts">UserListProjectsResponse</a></code>
 - <code><a href="./src/resources/organizations/users.ts">UserRemoveFromProjectResponse</a></code>
 
 Methods:
 
-- <code title="get /api/v1/organizations/{organization_id}/users">client.organizations.users.<a href="./src/resources/organizations/users.ts">list</a>(organizationID) -> UserListResponse</code>
 - <code title="delete /api/v1/organizations/{organization_id}/users/{member_user_id}">client.organizations.users.<a href="./src/resources/organizations/users.ts">delete</a>(memberUserID, [ ...body ]) -> void</code>
 - <code title="put /api/v1/organizations/{organization_id}/users">client.organizations.users.<a href="./src/resources/organizations/users.ts">add</a>(organizationID, [ ...body ]) -> UserAddResponse</code>
 - <code title="put /api/v1/organizations/{organization_id}/users/{user_id}/projects">client.organizations.users.<a href="./src/resources/organizations/users.ts">addToProject</a>(userID, { ...params }) -> unknown</code>
 - <code title="put /api/v1/organizations/{organization_id}/users/roles">client.organizations.users.<a href="./src/resources/organizations/users.ts">assignRole</a>(organizationID, { ...params }) -> UserOrganizationRole</code>
+- <code title="get /api/v1/organizations/{organization_id}/users">client.organizations.users.<a href="./src/resources/organizations/users.ts">listMembers</a>(organizationID) -> UserListMembersResponse</code>
 - <code title="get /api/v1/organizations/{organization_id}/users/{user_id}/projects">client.organizations.users.<a href="./src/resources/organizations/users.ts">listProjects</a>(userID, { ...params }) -> UserListProjectsResponse</code>
 - <code title="get /api/v1/organizations/{organization_id}/users/roles">client.organizations.users.<a href="./src/resources/organizations/users.ts">listRoles</a>(organizationID, { ...params }) -> UserOrganizationRole | null</code>
 - <code title="delete /api/v1/organizations/{organization_id}/users/{user_id}/projects/{project_id}">client.organizations.users.<a href="./src/resources/organizations/users.ts">removeFromProject</a>(projectID, { ...params }) -> unknown</code>
