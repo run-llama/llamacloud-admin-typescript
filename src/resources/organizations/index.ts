@@ -14,9 +14,9 @@ export {
 export { Roles, type RoleListResponse } from './roles';
 export {
   Users,
-  type UserListResponse,
   type UserAddResponse,
   type UserAddToProjectResponse,
+  type UserListMembersResponse,
   type UserListProjectsResponse,
   type UserRemoveFromProjectResponse,
   type UserDeleteParams,

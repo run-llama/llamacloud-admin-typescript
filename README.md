@@ -26,7 +26,7 @@ const client = new LlamaCloudAdmin({
   apiKey: process.env['LLAMA_CLOUD_API_KEY'], // This is the default and can be omitted
 });
 
-const organizationMembers = await client.organizations.users.list('my-organization-id');
+const organizationMembers = await client.organizations.users.listMembers('my-organization-id');
 ```
 
 ### Request & Response types
@@ -253,7 +253,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.organizations.users.list({
+client.organizations.users.listMembers({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',

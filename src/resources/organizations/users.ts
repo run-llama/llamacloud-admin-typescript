@@ -9,13 +9,6 @@ import { path } from '../../internal/utils/path';
 
 export class Users extends APIResource {
   /**
-   * Get all users in an organization.
-   */
-  list(organizationID: string, options?: RequestOptions): APIPromise<UserListResponse> {
-    return this._client.get(path`/api/v1/organizations/${organizationID}/users`, options);
-  }
-
-  /**
    * Remove users from an organization.
    */
   delete(memberUserID: string, params: UserDeleteParams, options?: RequestOptions): APIPromise<void> {
@@ -62,6 +55,13 @@ export class Users extends APIResource {
   }
 
   /**
+   * Get all users in an organization.
+   */
+  listMembers(organizationID: string, options?: RequestOptions): APIPromise<UserListMembersResponse> {
+    return this._client.get(path`/api/v1/organizations/${organizationID}/users`, options);
+  }
+
+  /**
    * List all projects for a user in an organization.
    */
   listProjects(
@@ -100,11 +100,11 @@ export class Users extends APIResource {
   }
 }
 
-export type UserListResponse = Array<OrganizationsAPI.OrganizationMember>;
-
 export type UserAddResponse = Array<OrganizationsAPI.OrganizationMember>;
 
 export type UserAddToProjectResponse = unknown;
+
+export type UserListMembersResponse = Array<OrganizationsAPI.OrganizationMember>;
 
 export type UserListProjectsResponse = Array<UserListProjectsResponse.UserListProjectsResponseItem>;
 
@@ -232,9 +232,9 @@ export interface UserRemoveFromProjectParams {
 
 export declare namespace Users {
   export {
-    type UserListResponse as UserListResponse,
     type UserAddResponse as UserAddResponse,
     type UserAddToProjectResponse as UserAddToProjectResponse,
+    type UserListMembersResponse as UserListMembersResponse,
     type UserListProjectsResponse as UserListProjectsResponse,
     type UserRemoveFromProjectResponse as UserRemoveFromProjectResponse,
     type UserDeleteParams as UserDeleteParams,
