@@ -6,6 +6,7 @@ Types:
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationMember</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">Role</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">UserOrganizationRole</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">OrganizationGetUsageResponse</a></code>
 
 Methods:
 
@@ -14,6 +15,7 @@ Methods:
 - <code title="get /api/v2/organizations">client.organizations.<a href="./src/resources/organizations/organizations.ts">list</a>({ ...params }) -> OrganizationsPaginatedCursor</code>
 - <code title="delete /api/v2/organizations/{organization_id}">client.organizations.<a href="./src/resources/organizations/organizations.ts">delete</a>(organizationID) -> void</code>
 - <code title="get /api/v2/organizations/{organization_id}">client.organizations.<a href="./src/resources/organizations/organizations.ts">get</a>(organizationID) -> Organization</code>
+- <code title="get /api/v1/organizations/{organization_id}/usage">client.organizations.<a href="./src/resources/organizations/organizations.ts">getUsage</a>(organizationID, { ...params }) -> OrganizationGetUsageResponse</code>
 
 ## Users
 
@@ -51,6 +53,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/projects.ts">Project</a></code>
+- <code><a href="./src/resources/projects.ts">ProjectGetUsageResponse</a></code>
 
 Methods:
 
@@ -59,6 +62,7 @@ Methods:
 - <code title="get /api/v2/projects">client.projects.<a href="./src/resources/projects.ts">list</a>({ ...params }) -> ProjectsPaginatedCursor</code>
 - <code title="delete /api/v2/projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">delete</a>(projectID, { ...params }) -> void</code>
 - <code title="get /api/v2/projects/{project_id}">client.projects.<a href="./src/resources/projects.ts">get</a>(projectID, { ...params }) -> Project</code>
+- <code title="get /api/v1/projects/{project_id}/usage">client.projects.<a href="./src/resources/projects.ts">getUsage</a>(projectID, { ...params }) -> ProjectGetUsageResponse</code>
 
 # Invites
 
