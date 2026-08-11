@@ -6,11 +6,9 @@ export {
   type OrganizationMember,
   type Role,
   type UserOrganizationRole,
-  type OrganizationGetUsageResponse,
   type OrganizationCreateParams,
   type OrganizationUpdateParams,
   type OrganizationListParams,
-  type OrganizationGetUsageParams,
   type OrganizationsPaginatedCursor,
 } from './organizations';
 export { Roles, type RoleListResponse } from './roles';

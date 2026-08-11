@@ -23,22 +23,18 @@ export {
   type OrganizationMember,
   type Role,
   type UserOrganizationRole,
-  type OrganizationGetUsageResponse,
   type OrganizationCreateParams,
   type OrganizationUpdateParams,
   type OrganizationListParams,
-  type OrganizationGetUsageParams,
   type OrganizationsPaginatedCursor,
 } from './organizations/organizations';
 export {
   Projects,
   type Project,
-  type ProjectGetUsageResponse,
   type ProjectCreateParams,
   type ProjectUpdateParams,
   type ProjectListParams,
   type ProjectDeleteParams,
   type ProjectGetParams,
-  type ProjectGetUsageParams,
   type ProjectsPaginatedCursor,
 } from './projects';
