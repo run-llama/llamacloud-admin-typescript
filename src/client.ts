@@ -31,8 +31,6 @@ import {
   ProjectCreateParams,
   ProjectDeleteParams,
   ProjectGetParams,
-  ProjectGetUsageParams,
-  ProjectGetUsageResponse,
   ProjectListParams,
   ProjectUpdateParams,
   Projects,
@@ -51,8 +49,6 @@ import {
 import {
   Organization,
   OrganizationCreateParams,
-  OrganizationGetUsageParams,
-  OrganizationGetUsageResponse,
   OrganizationListParams,
   OrganizationMember,
   OrganizationUpdateParams,
@@ -820,25 +816,21 @@ export declare namespace LlamaCloudAdmin {
     type OrganizationMember as OrganizationMember,
     type Role as Role,
     type UserOrganizationRole as UserOrganizationRole,
-    type OrganizationGetUsageResponse as OrganizationGetUsageResponse,
     type OrganizationsPaginatedCursor as OrganizationsPaginatedCursor,
     type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
     type OrganizationListParams as OrganizationListParams,
-    type OrganizationGetUsageParams as OrganizationGetUsageParams,
   };
 
   export {
     Projects as Projects,
     type Project as Project,
-    type ProjectGetUsageResponse as ProjectGetUsageResponse,
     type ProjectsPaginatedCursor as ProjectsPaginatedCursor,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectUpdateParams as ProjectUpdateParams,
     type ProjectListParams as ProjectListParams,
     type ProjectDeleteParams as ProjectDeleteParams,
     type ProjectGetParams as ProjectGetParams,
-    type ProjectGetUsageParams as ProjectGetUsageParams,
   };
 
   export {
