@@ -84,7 +84,7 @@ export class Organizations extends APIResource {
     organizationID: string,
     query: OrganizationGetUsageParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<OrganizationGetUsageResponse> {
+  ): APIPromise<UsageAndPlan> {
     return this._client.get(path`/api/v1/organizations/${organizationID}/usage`, { query, ...options });
   }
 }
@@ -244,56 +244,16 @@ export namespace Role {
   }
 }
 
-/**
- * Schema for a user's role in an organization.
- */
-export interface UserOrganizationRole {
-  /**
-   * Unique identifier
-   */
-  id: string;
-
-  /**
-   * The organization's ID.
-   */
-  organization_id: string;
-
-  /**
-   * The role.
-   */
-  role: Role;
-
-  /**
-   * The user's ID.
-   */
-  user_id: string;
-
-  /**
-   * Creation datetime
-   */
-  created_at?: string | null;
-
-  /**
-   * The project ID scope.
-   */
-  project_ids?: Array<string> | null;
-
-  /**
-   * Update datetime
-   */
-  updated_at?: string | null;
-}
-
-export interface OrganizationGetUsageResponse {
-  plan: OrganizationGetUsageResponse.Plan;
+export interface UsageAndPlan {
+  plan: UsageAndPlan.Plan;
 
   /**
    * Account usage totals shown alongside the plan.
    */
-  usage: OrganizationGetUsageResponse.Usage;
+  usage: UsageAndPlan.Usage;
 }
 
-export namespace OrganizationGetUsageResponse {
+export namespace UsageAndPlan {
   export interface Plan {
     limits: Plan.Limits;
 
@@ -504,6 +464,46 @@ export namespace OrganizationGetUsageResponse {
   }
 }
 
+/**
+ * Schema for a user's role in an organization.
+ */
+export interface UserOrganizationRole {
+  /**
+   * Unique identifier
+   */
+  id: string;
+
+  /**
+   * The organization's ID.
+   */
+  organization_id: string;
+
+  /**
+   * The role.
+   */
+  role: Role;
+
+  /**
+   * The user's ID.
+   */
+  user_id: string;
+
+  /**
+   * Creation datetime
+   */
+  created_at?: string | null;
+
+  /**
+   * The project ID scope.
+   */
+  project_ids?: Array<string> | null;
+
+  /**
+   * Update datetime
+   */
+  updated_at?: string | null;
+}
+
 export interface OrganizationCreateParams {
   /**
    * The organization's display name.
@@ -534,8 +534,8 @@ export declare namespace Organizations {
     type Organization as Organization,
     type OrganizationMember as OrganizationMember,
     type Role as Role,
+    type UsageAndPlan as UsageAndPlan,
     type UserOrganizationRole as UserOrganizationRole,
-    type OrganizationGetUsageResponse as OrganizationGetUsageResponse,
     type OrganizationsPaginatedCursor as OrganizationsPaginatedCursor,
     type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
