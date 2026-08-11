@@ -5,6 +5,7 @@ Types:
 - <code><a href="./src/resources/organizations/organizations.ts">Organization</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">OrganizationMember</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">Role</a></code>
+- <code><a href="./src/resources/organizations/organizations.ts">UsageAndPlan</a></code>
 - <code><a href="./src/resources/organizations/organizations.ts">UserOrganizationRole</a></code>
 
 Methods:
@@ -14,6 +15,7 @@ Methods:
 - <code title="get /api/v2/organizations">client.organizations.<a href="./src/resources/organizations/organizations.ts">list</a>({ ...params }) -> OrganizationsPaginatedCursor</code>
 - <code title="delete /api/v2/organizations/{organization_id}">client.organizations.<a href="./src/resources/organizations/organizations.ts">delete</a>(organizationID) -> void</code>
 - <code title="get /api/v2/organizations/{organization_id}">client.organizations.<a href="./src/resources/organizations/organizations.ts">get</a>(organizationID) -> Organization</code>
+- <code title="get /api/v1/organizations/{organization_id}/usage">client.organizations.<a href="./src/resources/organizations/organizations.ts">getUsage</a>(organizationID, { ...params }) -> UsageAndPlan</code>
 
 ## Users
 
@@ -68,9 +70,9 @@ Types:
 
 Methods:
 
-- <code title="get /api/v2/invites">client.invites.<a href="./src/resources/invites.ts">list</a>({ ...params }) -> InvitesPaginatedCursor</code>
-- <code title="delete /api/v2/invites/{invite_id}">client.invites.<a href="./src/resources/invites.ts">delete</a>(inviteID) -> void</code>
 - <code title="post /api/v2/invites/{invite_id}/accept">client.invites.<a href="./src/resources/invites.ts">accept</a>(inviteID) -> InviteAcceptResponse</code>
+- <code title="delete /api/v2/invites/{invite_id}">client.invites.<a href="./src/resources/invites.ts">decline</a>(inviteID) -> void</code>
+- <code title="get /api/v2/invites">client.invites.<a href="./src/resources/invites.ts">listMine</a>({ ...params }) -> InvitesPaginatedCursor</code>
 
 # Admin
 
