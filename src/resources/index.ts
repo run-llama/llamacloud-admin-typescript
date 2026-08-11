@@ -22,8 +22,8 @@ export {
   type Organization,
   type OrganizationMember,
   type Role,
+  type UsageAndPlan,
   type UserOrganizationRole,
-  type OrganizationGetUsageResponse,
   type OrganizationCreateParams,
   type OrganizationUpdateParams,
   type OrganizationListParams,
@@ -33,12 +33,10 @@ export {
 export {
   Projects,
   type Project,
-  type ProjectGetUsageResponse,
   type ProjectCreateParams,
   type ProjectUpdateParams,
   type ProjectListParams,
   type ProjectDeleteParams,
   type ProjectGetParams,
-  type ProjectGetUsageParams,
   type ProjectsPaginatedCursor,
 } from './projects';
