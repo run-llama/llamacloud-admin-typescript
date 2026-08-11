@@ -7,14 +7,13 @@ export {
   type AdminGetLlamaextractFeaturesResponse,
   type AdminGetLlmsInfoResponse,
   type AdminGetOcrStatusResponse,
-  type AdminGetS3ConfigResponse,
   type AdminGetLicenseInfoParams,
 } from './admin/admin';
 export {
   Invites,
   type Invite,
   type InviteAcceptResponse,
-  type InviteListParams,
+  type InviteListMineParams,
   type InvitesPaginatedCursor,
 } from './invites';
 export {
