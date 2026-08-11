@@ -2,12 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as UsageMetricsAPI from './usage-metrics';
-import {
-  UsageMetricAggregateParams,
-  UsageMetricAggregateResponse,
-  UsageMetricExportParams,
-  UsageMetrics,
-} from './usage-metrics';
+import { UsageMetricAggregateParams, UsageMetricAggregateResponse, UsageMetrics } from './usage-metrics';
 import * as UsersAPI from './users';
 import { CustomClaims, UserClaims, UserUpdateClaimsParams, Users } from './users';
 import { APIPromise } from '../../core/api-promise';
@@ -79,18 +74,6 @@ export class Admin extends APIResource {
    */
   getOcrStatus(options?: RequestOptions): APIPromise<AdminGetOcrStatusResponse> {
     return this._client.get('/api/v1/admin/ocr/statusz', options);
-  }
-
-  /**
-   * Return resolved S3 configuration and presigned URL signing details.
-   *
-   * @example
-   * ```ts
-   * const response = await client.admin.getS3Config();
-   * ```
-   */
-  getS3Config(options?: RequestOptions): APIPromise<AdminGetS3ConfigResponse> {
-    return this._client.get('/api/v1/admin/s3/config', options);
   }
 }
 
@@ -187,62 +170,6 @@ export interface AdminGetOcrStatusResponse {
   gpu_device_name?: string | null;
 }
 
-export interface AdminGetS3ConfigResponse {
-  buckets: AdminGetS3ConfigResponse.Buckets;
-
-  /**
-   * Whether BYOC mode is enabled
-   */
-  byoc_mode_enabled: boolean;
-
-  /**
-   * Custom S3 endpoint URL (None = standard AWS)
-   */
-  endpoint_url: string | null;
-
-  /**
-   * Whether a KMS key ID is configured for server-side encryption
-   */
-  kms_key_configured: boolean;
-
-  /**
-   * Signature version used when generating presigned URLs. 'unsigned' = s3proxy path
-   * (proxy handles auth), 's3v4' = explicit SigV4, 'default' = no override set
-   * (botocore default, may produce SigV2 without a region)
-   */
-  presigned_url_signature_version: 'default' | 's3v4' | 'unsigned';
-
-  /**
-   * Resolved value: whether requests are routed through s3proxy
-   */
-  s3_proxy_active: boolean;
-
-  /**
-   * Explicit S3_PROXY_ENABLED override; None means auto-detect
-   */
-  s3_proxy_enabled_override: boolean | null;
-}
-
-export namespace AdminGetS3ConfigResponse {
-  export interface Buckets {
-    document_bucket: string;
-
-    etl_bucket: string;
-
-    external_components_bucket: string;
-
-    file_parsing_bucket: string;
-
-    file_screenshot_bucket: string;
-
-    llama_cloud_parse_output_bucket: string;
-
-    llama_extract_output_bucket: string;
-
-    raw_file_bucket: string;
-  }
-}
-
 export interface AdminGetLicenseInfoParams {
   /**
    * Whether to include scopes in the response
@@ -260,7 +187,6 @@ export declare namespace Admin {
     type AdminGetLlamaextractFeaturesResponse as AdminGetLlamaextractFeaturesResponse,
     type AdminGetLlmsInfoResponse as AdminGetLlmsInfoResponse,
     type AdminGetOcrStatusResponse as AdminGetOcrStatusResponse,
-    type AdminGetS3ConfigResponse as AdminGetS3ConfigResponse,
     type AdminGetLicenseInfoParams as AdminGetLicenseInfoParams,
   };
 
@@ -275,6 +201,5 @@ export declare namespace Admin {
     UsageMetrics as UsageMetrics,
     type UsageMetricAggregateResponse as UsageMetricAggregateResponse,
     type UsageMetricAggregateParams as UsageMetricAggregateParams,
-    type UsageMetricExportParams as UsageMetricExportParams,
   };
 }

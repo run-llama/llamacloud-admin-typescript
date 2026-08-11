@@ -44,7 +44,6 @@ import {
   AdminGetLlamaextractFeaturesResponse,
   AdminGetLlmsInfoResponse,
   AdminGetOcrStatusResponse,
-  AdminGetS3ConfigResponse,
 } from './resources/admin/admin';
 import {
   Organization,
@@ -848,7 +847,6 @@ export declare namespace LlamaCloudAdmin {
     type AdminGetLlamaextractFeaturesResponse as AdminGetLlamaextractFeaturesResponse,
     type AdminGetLlmsInfoResponse as AdminGetLlmsInfoResponse,
     type AdminGetOcrStatusResponse as AdminGetOcrStatusResponse,
-    type AdminGetS3ConfigResponse as AdminGetS3ConfigResponse,
     type AdminGetLicenseInfoParams as AdminGetLicenseInfoParams,
   };
 }
