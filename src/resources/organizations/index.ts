@@ -26,6 +26,5 @@ export {
   type UserAddToProjectParams,
   type UserAssignRoleParams,
   type UserListProjectsParams,
-  type UserListRolesParams,
   type UserRemoveFromProjectParams,
 } from './users';

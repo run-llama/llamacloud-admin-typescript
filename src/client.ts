@@ -22,7 +22,7 @@ import { APIPromise } from './core/api-promise';
 import {
   Invite,
   InviteAcceptResponse,
-  InviteListParams,
+  InviteListMineParams,
   Invites,
   InvitesPaginatedCursor,
 } from './resources/invites';
@@ -44,7 +44,6 @@ import {
   AdminGetLlamaextractFeaturesResponse,
   AdminGetLlmsInfoResponse,
   AdminGetOcrStatusResponse,
-  AdminGetS3ConfigResponse,
 } from './resources/admin/admin';
 import {
   Organization,
@@ -842,7 +841,7 @@ export declare namespace LlamaCloudAdmin {
     type Invite as Invite,
     type InviteAcceptResponse as InviteAcceptResponse,
     type InvitesPaginatedCursor as InvitesPaginatedCursor,
-    type InviteListParams as InviteListParams,
+    type InviteListMineParams as InviteListMineParams,
   };
 
   export {
@@ -852,7 +851,6 @@ export declare namespace LlamaCloudAdmin {
     type AdminGetLlamaextractFeaturesResponse as AdminGetLlamaextractFeaturesResponse,
     type AdminGetLlmsInfoResponse as AdminGetLlmsInfoResponse,
     type AdminGetOcrStatusResponse as AdminGetOcrStatusResponse,
-    type AdminGetS3ConfigResponse as AdminGetS3ConfigResponse,
     type AdminGetLicenseInfoParams as AdminGetLicenseInfoParams,
   };
 }

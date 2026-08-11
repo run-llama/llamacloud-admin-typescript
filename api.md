@@ -35,7 +35,6 @@ Methods:
 - <code title="put /api/v1/organizations/{organization_id}/users/roles">client.organizations.users.<a href="./src/resources/organizations/users.ts">assignRole</a>(organizationID, { ...params }) -> UserOrganizationRole</code>
 - <code title="get /api/v1/organizations/{organization_id}/users">client.organizations.users.<a href="./src/resources/organizations/users.ts">listMembers</a>(organizationID) -> UserListMembersResponse</code>
 - <code title="get /api/v1/organizations/{organization_id}/users/{user_id}/projects">client.organizations.users.<a href="./src/resources/organizations/users.ts">listProjects</a>(userID, { ...params }) -> UserListProjectsResponse</code>
-- <code title="get /api/v1/organizations/{organization_id}/users/roles">client.organizations.users.<a href="./src/resources/organizations/users.ts">listRoles</a>(organizationID, { ...params }) -> UserOrganizationRole | null</code>
 - <code title="delete /api/v1/organizations/{organization_id}/users/{user_id}/projects/{project_id}">client.organizations.users.<a href="./src/resources/organizations/users.ts">removeFromProject</a>(projectID, { ...params }) -> unknown</code>
 
 ## Roles
@@ -71,9 +70,9 @@ Types:
 
 Methods:
 
-- <code title="get /api/v2/invites">client.invites.<a href="./src/resources/invites.ts">list</a>({ ...params }) -> InvitesPaginatedCursor</code>
-- <code title="delete /api/v2/invites/{invite_id}">client.invites.<a href="./src/resources/invites.ts">delete</a>(inviteID) -> void</code>
 - <code title="post /api/v2/invites/{invite_id}/accept">client.invites.<a href="./src/resources/invites.ts">accept</a>(inviteID) -> InviteAcceptResponse</code>
+- <code title="delete /api/v2/invites/{invite_id}">client.invites.<a href="./src/resources/invites.ts">decline</a>(inviteID) -> void</code>
+- <code title="get /api/v2/invites">client.invites.<a href="./src/resources/invites.ts">listMine</a>({ ...params }) -> InvitesPaginatedCursor</code>
 
 # Admin
 
@@ -84,7 +83,6 @@ Types:
 - <code><a href="./src/resources/admin/admin.ts">AdminGetLlamaextractFeaturesResponse</a></code>
 - <code><a href="./src/resources/admin/admin.ts">AdminGetLlmsInfoResponse</a></code>
 - <code><a href="./src/resources/admin/admin.ts">AdminGetOcrStatusResponse</a></code>
-- <code><a href="./src/resources/admin/admin.ts">AdminGetS3ConfigResponse</a></code>
 
 Methods:
 
@@ -93,7 +91,6 @@ Methods:
 - <code title="get /api/v1/admin/llamaextract/features">client.admin.<a href="./src/resources/admin/admin.ts">getLlamaextractFeatures</a>() -> AdminGetLlamaextractFeaturesResponse</code>
 - <code title="get /api/v1/admin/llms/info">client.admin.<a href="./src/resources/admin/admin.ts">getLlmsInfo</a>() -> AdminGetLlmsInfoResponse</code>
 - <code title="get /api/v1/admin/ocr/statusz">client.admin.<a href="./src/resources/admin/admin.ts">getOcrStatus</a>() -> AdminGetOcrStatusResponse</code>
-- <code title="get /api/v1/admin/s3/config">client.admin.<a href="./src/resources/admin/admin.ts">getS3Config</a>() -> AdminGetS3ConfigResponse</code>
 
 ## Users
 
@@ -116,4 +113,3 @@ Types:
 Methods:
 
 - <code title="get /api/v1/admin/usage-metrics/aggregate">client.admin.usageMetrics.<a href="./src/resources/admin/usage-metrics.ts">aggregate</a>({ ...params }) -> UsageMetricAggregateResponse</code>
-- <code title="get /api/v1/admin/usage-metrics/export">client.admin.usageMetrics.<a href="./src/resources/admin/usage-metrics.ts">export</a>({ ...params }) -> void</code>
