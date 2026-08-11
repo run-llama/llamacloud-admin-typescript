@@ -7,7 +7,6 @@ export {
   type AdminGetLlamaextractFeaturesResponse,
   type AdminGetLlmsInfoResponse,
   type AdminGetOcrStatusResponse,
-  type AdminGetS3ConfigResponse,
   type AdminGetLicenseInfoParams,
 } from './admin/admin';
 export {

@@ -14,7 +14,6 @@ import {
   UserListMembersResponse,
   UserListProjectsParams,
   UserListProjectsResponse,
-  UserListRolesParams,
   UserRemoveFromProjectParams,
   UserRemoveFromProjectResponse,
   Users,
@@ -318,7 +317,6 @@ export declare namespace Organizations {
     type UserAddToProjectParams as UserAddToProjectParams,
     type UserAssignRoleParams as UserAssignRoleParams,
     type UserListProjectsParams as UserListProjectsParams,
-    type UserListRolesParams as UserListRolesParams,
     type UserRemoveFromProjectParams as UserRemoveFromProjectParams,
   };
 

@@ -74,17 +74,6 @@ export class Users extends APIResource {
   }
 
   /**
-   * Get the role of a user in an organization.
-   */
-  listRoles(
-    organizationID: string,
-    query: UserListRolesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<OrganizationsAPI.UserOrganizationRole | null> {
-    return this._client.get(path`/api/v1/organizations/${organizationID}/users/roles`, { query, ...options });
-  }
-
-  /**
    * Remove a user from a project.
    */
   removeFromProject(
@@ -220,10 +209,6 @@ export interface UserListProjectsParams {
   organization_id: string;
 }
 
-export interface UserListRolesParams {
-  project_id?: string | null;
-}
-
 export interface UserRemoveFromProjectParams {
   organization_id: string;
 
@@ -242,7 +227,6 @@ export declare namespace Users {
     type UserAddToProjectParams as UserAddToProjectParams,
     type UserAssignRoleParams as UserAssignRoleParams,
     type UserListProjectsParams as UserListProjectsParams,
-    type UserListRolesParams as UserListRolesParams,
     type UserRemoveFromProjectParams as UserRemoveFromProjectParams,
   };
 }
