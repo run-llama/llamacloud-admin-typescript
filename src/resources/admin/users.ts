@@ -41,6 +41,7 @@ export class Users extends APIResource {
    * ```ts
    * const userClaims = await client.admin.users.updateClaims(
    *   'user_id',
+   *   { set_claims: { allowed_org_creation: true } },
    * );
    * ```
    */

@@ -2,7 +2,7 @@
 
 This library provides convenient access to the Llama Cloud Admin REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [developers.llamaindex.ai](https://developers.llamaindex.ai/). The full API of this library can be found in [api.md](api.md).
+This library covers LlamaCloud organization and project administration plus the global-admin operator endpoints. That surface is not part of the public REST reference on developers.llamaindex.ai — the full method inventory, with the HTTP path behind each method, is in [api.md](api.md), and every method, request param, and response field carries a docstring that appears on hover.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -109,7 +109,7 @@ const client = new LlamaCloudAdmin({
 });
 
 // Or, configure per-request:
-await client.organizations.list({
+await client.organizations.list({}, {
   maxRetries: 5,
 });
 ```
@@ -126,7 +126,7 @@ const client = new LlamaCloudAdmin({
 });
 
 // Override per-request:
-await client.organizations.list({
+await client.organizations.list({}, {
   timeout: 5 * 1000,
 });
 ```
@@ -366,8 +366,6 @@ const client = new LlamaCloudAdmin({
 });
 ```
 
-## Frequently Asked Questions
-
 ## Versioning
 
 This package is distributed only from this Git repository. It is not published to npm, has no release
@@ -377,6 +375,14 @@ To pin a specific revision, install from a commit SHA:
     npm install git+https://github.com/run-llama/llamacloud-admin-typescript.git#<commit-sha>
 
 Backwards-incompatible changes can land on the default branch, so pin a SHA if you need a stable surface.
+
+### Determining the installed revision
+
+The package version is a fixed placeholder (`0.0.1`) and never changes, so it cannot tell you which
+revision you are running. Because the library is installed from Git, read the commit from your
+project's lockfile instead: the `@llamaindex/llama-cloud-admin` entry records the resolved commit SHA
+in its `resolved` field (`package-lock.json`) or `resolved` line (`yarn.lock`). Quote that SHA when
+filing an issue.
 
 We are keen for your feedback; please open an [issue](https://www.github.com/run-llama/llamacloud-admin-typescript/issues) with questions, bugs, or suggestions.
 
