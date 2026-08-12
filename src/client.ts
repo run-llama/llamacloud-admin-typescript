@@ -22,7 +22,7 @@ import { APIPromise } from './core/api-promise';
 import {
   Invite,
   InviteAcceptResponse,
-  InviteListMineParams,
+  InviteListParams,
   Invites,
   InvitesPaginatedCursor,
 } from './resources/invites';
@@ -44,18 +44,17 @@ import {
   AdminGetLlamaextractFeaturesResponse,
   AdminGetLlmsInfoResponse,
   AdminGetOcrStatusResponse,
+  AdminGetS3ConfigResponse,
 } from './resources/admin/admin';
 import {
   Organization,
   OrganizationCreateParams,
-  OrganizationGetUsageParams,
   OrganizationListParams,
   OrganizationMember,
   OrganizationUpdateParams,
   Organizations,
   OrganizationsPaginatedCursor,
   Role,
-  UsageAndPlan,
   UserOrganizationRole,
 } from './resources/organizations/organizations';
 import { type Fetch } from './internal/builtin-types';
@@ -816,13 +815,11 @@ export declare namespace LlamaCloudAdmin {
     type Organization as Organization,
     type OrganizationMember as OrganizationMember,
     type Role as Role,
-    type UsageAndPlan as UsageAndPlan,
     type UserOrganizationRole as UserOrganizationRole,
     type OrganizationsPaginatedCursor as OrganizationsPaginatedCursor,
     type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
     type OrganizationListParams as OrganizationListParams,
-    type OrganizationGetUsageParams as OrganizationGetUsageParams,
   };
 
   export {
@@ -841,7 +838,7 @@ export declare namespace LlamaCloudAdmin {
     type Invite as Invite,
     type InviteAcceptResponse as InviteAcceptResponse,
     type InvitesPaginatedCursor as InvitesPaginatedCursor,
-    type InviteListMineParams as InviteListMineParams,
+    type InviteListParams as InviteListParams,
   };
 
   export {
@@ -851,6 +848,7 @@ export declare namespace LlamaCloudAdmin {
     type AdminGetLlamaextractFeaturesResponse as AdminGetLlamaextractFeaturesResponse,
     type AdminGetLlmsInfoResponse as AdminGetLlmsInfoResponse,
     type AdminGetOcrStatusResponse as AdminGetOcrStatusResponse,
+    type AdminGetS3ConfigResponse as AdminGetS3ConfigResponse,
     type AdminGetLicenseInfoParams as AdminGetLicenseInfoParams,
   };
 }

@@ -36,4 +36,31 @@ describe('resource usageMetrics', () => {
       user_id: 'user_id',
     });
   });
+
+  // Mock server tests are disabled
+  test.skip('export: only required params', async () => {
+    const responsePromise = client.admin.usageMetrics.export({
+      day_on_or_after: 'day_on_or_after',
+      day_on_or_before: 'day_on_or_before',
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('export: required and optional params', async () => {
+    const response = await client.admin.usageMetrics.export({
+      day_on_or_after: 'day_on_or_after',
+      day_on_or_before: 'day_on_or_before',
+      event_types: ['audio_seconds_parsed', 'chart_parsing_agentic'],
+      organization_id: 'organization_id',
+      project_id: 'project_id',
+      user_id: 'user_id',
+    });
+  });
 });
