@@ -137,8 +137,12 @@ Note that requests which time out will be [retried twice by default](#retries).
 
 ## Auto-pagination
 
-List methods in the LlamaCloudAdmin API are paginated.
-You can use the `for await … of` syntax to iterate through items across all pages:
+Three methods in this library are paginated: `organizations.list()`, `projects.list()`, and
+`invites.listMine()`. The remaining list-shaped methods — `organizations.users.listMembers()`,
+`organizations.users.listProjects()`, and `organizations.roles.list()` — return every result in a
+single response as a plain array and accept no `page_size`/`page_token`.
+
+For the paginated three, you can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
 async function fetchAllOrganizations(params) {
