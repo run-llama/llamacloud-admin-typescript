@@ -9,19 +9,16 @@ import { path } from '../internal/utils/path';
 
 export class Invites extends APIResource {
   /**
-   * List the current user's pending invitations, cursor-paginated.
+   * Accept a pending invitation. Returns the joined organization id.
    */
-  list(
-    query: InviteListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<InvitesPaginatedCursor, Invite> {
-    return this._client.getAPIList('/api/v2/invites', PaginatedCursor<Invite>, { query, ...options });
+  accept(inviteID: string, options?: RequestOptions): APIPromise<InviteAcceptResponse> {
+    return this._client.post(path`/api/v2/invites/${inviteID}/accept`, options);
   }
 
   /**
    * Decline a pending invitation.
    */
-  delete(inviteID: string, options?: RequestOptions): APIPromise<void> {
+  decline(inviteID: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/api/v2/invites/${inviteID}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -29,10 +26,13 @@ export class Invites extends APIResource {
   }
 
   /**
-   * Accept a pending invitation. Returns the joined organization id.
+   * List the current user's pending invitations, cursor-paginated.
    */
-  accept(inviteID: string, options?: RequestOptions): APIPromise<InviteAcceptResponse> {
-    return this._client.post(path`/api/v2/invites/${inviteID}/accept`, options);
+  listMine(
+    query: InviteListMineParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<InvitesPaginatedCursor, Invite> {
+    return this._client.getAPIList('/api/v2/invites', PaginatedCursor<Invite>, { query, ...options });
   }
 }
 
@@ -83,13 +83,13 @@ export interface InviteAcceptResponse {
   organization_id: string;
 }
 
-export interface InviteListParams extends PaginatedCursorParams {}
+export interface InviteListMineParams extends PaginatedCursorParams {}
 
 export declare namespace Invites {
   export {
     type Invite as Invite,
     type InviteAcceptResponse as InviteAcceptResponse,
     type InvitesPaginatedCursor as InvitesPaginatedCursor,
-    type InviteListParams as InviteListParams,
+    type InviteListMineParams as InviteListMineParams,
   };
 }

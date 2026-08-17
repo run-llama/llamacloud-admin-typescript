@@ -1,21 +1,19 @@
 # Llama Cloud Admin TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/@llamaindex/llama-cloud-admin.svg?label=npm%20(stable)>)](https://npmjs.org/package/@llamaindex/llama-cloud-admin) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@llamaindex/llama-cloud-admin)
-
 This library provides convenient access to the Llama Cloud Admin REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [developers.llamaindex.ai](https://developers.llamaindex.ai/). The full API of this library can be found in [api.md](api.md).
+This library covers LlamaCloud organization and project administration plus the global-admin operator endpoints. That surface is not part of the public REST reference on developers.llamaindex.ai — the full method inventory, with the HTTP path behind each method, is in [api.md](api.md), and every method, request param, and response field carries a docstring that appears on hover.
 
 It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:run-llama/llamacloud-admin-typescript.git
+npm install git+https://github.com/run-llama/llamacloud-admin-typescript.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install @llamaindex/llama-cloud-admin`
+> This package is distributed only from this Git repository. It is not published to npm.
 
 ## Usage
 
@@ -32,6 +30,19 @@ const client = new LlamaCloudAdmin({
 const organizationMembers = await client.organizations.users.listMembers('my-organization-id');
 ```
 
+The API key must belong to an organization admin. On a self-hosted or BYOC deployment it must belong
+to the deployment's global admin.
+
+The client defaults to `https://api.cloud.llamaindex.ai`. To target a self-hosted or BYOC deployment,
+set the `baseURL` client option or the `LLAMA_CLOUD_ADMIN_BASE_URL` environment variable:
+
+<!-- prettier-ignore -->
+```ts
+const client = new LlamaCloudAdmin({
+  baseURL: 'https://llamacloud.example.com',
+});
+```
+
 ### Request & Response types
 
 This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
@@ -44,7 +55,8 @@ const client = new LlamaCloudAdmin({
   apiKey: process.env['LLAMA_CLOUD_API_KEY'], // This is the default and can be omitted
 });
 
-const [organization]: [LlamaCloudAdmin.Organization] = await client.organizations.list();
+const page: LlamaCloudAdmin.OrganizationsPaginatedCursor = await client.organizations.list();
+const organization: LlamaCloudAdmin.Organization | undefined = page.items[0];
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -76,6 +88,7 @@ Error codes are as follows:
 | 401         | `AuthenticationError`      |
 | 403         | `PermissionDeniedError`    |
 | 404         | `NotFoundError`            |
+| 409         | `ConflictError`            |
 | 422         | `UnprocessableEntityError` |
 | 429         | `RateLimitError`           |
 | >=500       | `InternalServerError`      |
@@ -97,7 +110,7 @@ const client = new LlamaCloudAdmin({
 });
 
 // Or, configure per-request:
-await client.organizations.list({
+await client.organizations.list({}, {
   maxRetries: 5,
 });
 ```
@@ -114,7 +127,7 @@ const client = new LlamaCloudAdmin({
 });
 
 // Override per-request:
-await client.organizations.list({
+await client.organizations.list({}, {
   timeout: 5 * 1000,
 });
 ```
@@ -125,8 +138,12 @@ Note that requests which time out will be [retried twice by default](#retries).
 
 ## Auto-pagination
 
-List methods in the LlamaCloudAdmin API are paginated.
-You can use the `for await … of` syntax to iterate through items across all pages:
+Three methods in this library are paginated: `organizations.list()`, `projects.list()`, and
+`invites.listMine()`. The remaining list-shaped methods — `organizations.users.listMembers()`,
+`organizations.users.listProjects()`, and `organizations.roles.list()` — return every result in a
+single response as a plain array and accept no `page_size`/`page_token`.
+
+For the paginated three, you can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
 async function fetchAllOrganizations(params) {
@@ -256,7 +273,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.organizations.users.listMembers({
+client.organizations.users.assignRole('my-organization-id', {
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
@@ -344,7 +361,7 @@ const client = new LlamaCloudAdmin({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import LlamaCloudAdmin from 'npm:@llamaindex/llama-cloud-admin';
+import LlamaCloudAdmin from '@llamaindex/llama-cloud-admin';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
 const client = new LlamaCloudAdmin({
@@ -354,17 +371,23 @@ const client = new LlamaCloudAdmin({
 });
 ```
 
-## Frequently Asked Questions
+## Versioning
 
-## Semantic versioning
+This package is distributed only from this Git repository. It is not published to npm, has no release
+tags, and produces no changelog — installing from the default branch always tracks the latest commit.
+To pin a specific revision, install from a commit SHA:
 
-This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
+    npm install git+https://github.com/run-llama/llamacloud-admin-typescript.git#<commit-sha>
 
-1. Changes that only affect static types, without breaking runtime behavior.
-2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_
-3. Changes that we do not expect to impact the vast majority of users in practice.
+Backwards-incompatible changes can land on the default branch, so pin a SHA if you need a stable surface.
 
-We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
+### Determining the installed revision
+
+The package version is a fixed placeholder (`0.0.1`) and never changes, so it cannot tell you which
+revision you are running. Because the library is installed from Git, read the commit from your
+project's lockfile instead: the `@llamaindex/llama-cloud-admin` entry records the resolved commit SHA
+in its `resolved` field (`package-lock.json`) or `resolved` line (`yarn.lock`). Quote that SHA when
+filing an issue.
 
 We are keen for your feedback; please open an [issue](https://www.github.com/run-llama/llamacloud-admin-typescript/issues) with questions, bugs, or suggestions.
 
