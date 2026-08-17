@@ -256,6 +256,10 @@ export namespace UsageAndPlan {
   export interface Plan {
     limits: Plan.Limits;
 
+    metronome_plan_type: 'contract' | 'plan';
+
+    metronome_rate_card_alias: string | null;
+
     name:
       | 'enterprise'
       | 'enterprise_contract'
@@ -299,6 +303,11 @@ export namespace UsageAndPlan {
      * Whether the organization has a failed payment that requires support contact
      */
     is_payment_failed?: boolean;
+
+    /**
+     * The ID of the customer in Metronome
+     */
+    metronome_customer_id?: string | null;
 
     recurring_credits?: Array<Plan.RecurringCredit> | null;
 
