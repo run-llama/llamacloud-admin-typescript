@@ -2,7 +2,7 @@
 
 This library provides convenient access to the Llama Cloud Admin REST API from server-side TypeScript or JavaScript.
 
-This library covers LlamaCloud organization and project administration plus the global-admin operator endpoints. That surface is not part of the public REST reference on developers.llamaindex.ai — the full method inventory, with the HTTP path behind each method, is in [api.md](api.md), and every method, request param, and response field carries a docstring that appears on hover.
+The REST API documentation can be found on [admin.api.llamaindex.ai](https://admin.api.llamaindex.ai/). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
