@@ -441,8 +441,6 @@ export namespace UsageAndPlan {
 
     current_invoice_total_usd_cents?: number | null;
 
-    total_indexes?: number;
-
     total_users?: number;
   }
 
