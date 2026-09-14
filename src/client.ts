@@ -15,10 +15,23 @@ import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Pagination from './core/pagination';
-import { AbstractPage, type PaginatedCursorParams, PaginatedCursorResponse } from './core/pagination';
+import {
+  AbstractPage,
+  type PaginatedCursorParams,
+  PaginatedCursorResponse,
+  type PaginatedPageNumberParams,
+  PaginatedPageNumberResponse,
+} from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import {
+  APIKey,
+  APIKeyCreateParams,
+  APIKeyListParams,
+  APIKeys,
+  APIKeysPaginatedCursor,
+} from './resources/api-keys';
 import {
   Invite,
   InviteAcceptResponse,
@@ -36,6 +49,14 @@ import {
   Projects,
   ProjectsPaginatedCursor,
 } from './resources/projects';
+import {
+  QuotaConfiguration,
+  QuotaConfigurationsPaginatedPageNumber,
+  QuotaManagement,
+  QuotaManagementCreateParams,
+  QuotaManagementDeleteParams,
+  QuotaManagementListParams,
+} from './resources/quota-management';
 import {
   Admin,
   AdminGetFilestoresInfoResponse,
@@ -794,12 +815,16 @@ export class LlamaCloudAdmin {
   organizations: API.Organizations = new API.Organizations(this);
   projects: API.Projects = new API.Projects(this);
   invites: API.Invites = new API.Invites(this);
+  apiKeys: API.APIKeys = new API.APIKeys(this);
+  quotaManagement: API.QuotaManagement = new API.QuotaManagement(this);
   admin: API.Admin = new API.Admin(this);
 }
 
 LlamaCloudAdmin.Organizations = Organizations;
 LlamaCloudAdmin.Projects = Projects;
 LlamaCloudAdmin.Invites = Invites;
+LlamaCloudAdmin.APIKeys = APIKeys;
+LlamaCloudAdmin.QuotaManagement = QuotaManagement;
 LlamaCloudAdmin.Admin = Admin;
 
 export declare namespace LlamaCloudAdmin {
@@ -809,6 +834,12 @@ export declare namespace LlamaCloudAdmin {
   export {
     type PaginatedCursorParams as PaginatedCursorParams,
     type PaginatedCursorResponse as PaginatedCursorResponse,
+  };
+
+  export import PaginatedPageNumber = Pagination.PaginatedPageNumber;
+  export {
+    type PaginatedPageNumberParams as PaginatedPageNumberParams,
+    type PaginatedPageNumberResponse as PaginatedPageNumberResponse,
   };
 
   export {
@@ -842,6 +873,23 @@ export declare namespace LlamaCloudAdmin {
     type InviteAcceptResponse as InviteAcceptResponse,
     type InvitesPaginatedCursor as InvitesPaginatedCursor,
     type InviteListMineParams as InviteListMineParams,
+  };
+
+  export {
+    APIKeys as APIKeys,
+    type APIKey as APIKey,
+    type APIKeysPaginatedCursor as APIKeysPaginatedCursor,
+    type APIKeyCreateParams as APIKeyCreateParams,
+    type APIKeyListParams as APIKeyListParams,
+  };
+
+  export {
+    QuotaManagement as QuotaManagement,
+    type QuotaConfiguration as QuotaConfiguration,
+    type QuotaConfigurationsPaginatedPageNumber as QuotaConfigurationsPaginatedPageNumber,
+    type QuotaManagementCreateParams as QuotaManagementCreateParams,
+    type QuotaManagementListParams as QuotaManagementListParams,
+    type QuotaManagementDeleteParams as QuotaManagementDeleteParams,
   };
 
   export {

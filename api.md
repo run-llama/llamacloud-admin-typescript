@@ -74,6 +74,30 @@ Methods:
 - <code title="delete /api/v2/invites/{invite_id}">client.invites.<a href="./src/resources/invites.ts">decline</a>(inviteID) -> void</code>
 - <code title="get /api/v2/invites">client.invites.<a href="./src/resources/invites.ts">listMine</a>({ ...params }) -> InvitesPaginatedCursor</code>
 
+# APIKeys
+
+Types:
+
+- <code><a href="./src/resources/api-keys.ts">APIKey</a></code>
+
+Methods:
+
+- <code title="post /api/v1/beta/api-keys">client.apiKeys.<a href="./src/resources/api-keys.ts">create</a>({ ...params }) -> APIKey</code>
+- <code title="get /api/v1/beta/api-keys">client.apiKeys.<a href="./src/resources/api-keys.ts">list</a>({ ...params }) -> APIKeysPaginatedCursor</code>
+- <code title="delete /api/v1/beta/api-keys/{api_key_id}">client.apiKeys.<a href="./src/resources/api-keys.ts">delete</a>(apiKeyID) -> void</code>
+
+# QuotaManagement
+
+Types:
+
+- <code><a href="./src/resources/quota-management.ts">QuotaConfiguration</a></code>
+
+Methods:
+
+- <code title="post /api/v1/beta/quota-management">client.quotaManagement.<a href="./src/resources/quota-management.ts">create</a>({ ...params }) -> QuotaConfiguration</code>
+- <code title="get /api/v1/beta/quota-management">client.quotaManagement.<a href="./src/resources/quota-management.ts">list</a>({ ...params }) -> QuotaConfigurationsPaginatedPageNumber</code>
+- <code title="delete /api/v1/beta/quota-management/{quota_id}">client.quotaManagement.<a href="./src/resources/quota-management.ts">delete</a>(quotaID, { ...params }) -> void</code>
+
 # Admin
 
 Types:
