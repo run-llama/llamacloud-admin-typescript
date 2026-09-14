@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { PagePromise, PaginatedPageNumber, type PaginatedPageNumberParams } from '../core/pagination';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -25,8 +26,14 @@ export class QuotaManagement extends APIResource {
    * expand=true, returns resolved quotas (effective values after fallback chain) and
    * pagination parameters are ignored.
    */
-  list(query: QuotaManagementListParams, options?: RequestOptions): APIPromise<QuotaManagementListResponse> {
-    return this._client.get('/api/v1/beta/quota-management', { query, ...options });
+  list(
+    query: QuotaManagementListParams,
+    options?: RequestOptions,
+  ): PagePromise<QuotaConfigurationsPaginatedPageNumber, QuotaConfiguration> {
+    return this._client.getAPIList('/api/v1/beta/quota-management', PaginatedPageNumber<QuotaConfiguration>, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -41,6 +48,8 @@ export class QuotaManagement extends APIResource {
     });
   }
 }
+
+export type QuotaConfigurationsPaginatedPageNumber = PaginatedPageNumber<QuotaConfiguration>;
 
 /**
  * Full quota configuration model.
@@ -193,21 +202,6 @@ export namespace QuotaConfiguration {
   }
 }
 
-/**
- * Paginated list of quota configurations.
- */
-export interface QuotaManagementListResponse {
-  items: Array<QuotaConfiguration>;
-
-  page: number;
-
-  pages: number;
-
-  size: number;
-
-  total: number;
-}
-
 export interface QuotaManagementCreateParams {
   /**
    * Query param
@@ -235,7 +229,7 @@ export interface QuotaManagementCreateParams {
   project_id?: string | null;
 }
 
-export interface QuotaManagementListParams {
+export interface QuotaManagementListParams extends PaginatedPageNumberParams {
   source_id: string;
 
   source_type: 'GLOBAL' | 'organization' | 'plan_tier' | 'project';
@@ -310,10 +304,6 @@ export interface QuotaManagementListParams {
   exclude_self_service?: boolean;
 
   expand?: boolean;
-
-  page?: number;
-
-  page_size?: number;
 }
 
 export interface QuotaManagementDeleteParams {
@@ -323,7 +313,7 @@ export interface QuotaManagementDeleteParams {
 export declare namespace QuotaManagement {
   export {
     type QuotaConfiguration as QuotaConfiguration,
-    type QuotaManagementListResponse as QuotaManagementListResponse,
+    type QuotaConfigurationsPaginatedPageNumber as QuotaConfigurationsPaginatedPageNumber,
     type QuotaManagementCreateParams as QuotaManagementCreateParams,
     type QuotaManagementListParams as QuotaManagementListParams,
     type QuotaManagementDeleteParams as QuotaManagementDeleteParams,

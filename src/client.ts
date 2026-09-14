@@ -15,7 +15,13 @@ import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Pagination from './core/pagination';
-import { AbstractPage, type PaginatedCursorParams, PaginatedCursorResponse } from './core/pagination';
+import {
+  AbstractPage,
+  type PaginatedCursorParams,
+  PaginatedCursorResponse,
+  type PaginatedPageNumberParams,
+  PaginatedPageNumberResponse,
+} from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
@@ -45,11 +51,11 @@ import {
 } from './resources/projects';
 import {
   QuotaConfiguration,
+  QuotaConfigurationsPaginatedPageNumber,
   QuotaManagement,
   QuotaManagementCreateParams,
   QuotaManagementDeleteParams,
   QuotaManagementListParams,
-  QuotaManagementListResponse,
 } from './resources/quota-management';
 import {
   Admin,
@@ -830,6 +836,12 @@ export declare namespace LlamaCloudAdmin {
     type PaginatedCursorResponse as PaginatedCursorResponse,
   };
 
+  export import PaginatedPageNumber = Pagination.PaginatedPageNumber;
+  export {
+    type PaginatedPageNumberParams as PaginatedPageNumberParams,
+    type PaginatedPageNumberResponse as PaginatedPageNumberResponse,
+  };
+
   export {
     Organizations as Organizations,
     type Organization as Organization,
@@ -874,7 +886,7 @@ export declare namespace LlamaCloudAdmin {
   export {
     QuotaManagement as QuotaManagement,
     type QuotaConfiguration as QuotaConfiguration,
-    type QuotaManagementListResponse as QuotaManagementListResponse,
+    type QuotaConfigurationsPaginatedPageNumber as QuotaConfigurationsPaginatedPageNumber,
     type QuotaManagementCreateParams as QuotaManagementCreateParams,
     type QuotaManagementListParams as QuotaManagementListParams,
     type QuotaManagementDeleteParams as QuotaManagementDeleteParams,

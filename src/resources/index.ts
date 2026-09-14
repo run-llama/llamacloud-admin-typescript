@@ -49,8 +49,8 @@ export {
 export {
   QuotaManagement,
   type QuotaConfiguration,
-  type QuotaManagementListResponse,
   type QuotaManagementCreateParams,
   type QuotaManagementListParams,
   type QuotaManagementDeleteParams,
+  type QuotaConfigurationsPaginatedPageNumber,
 } from './quota-management';

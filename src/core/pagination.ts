@@ -161,3 +161,61 @@ export class PaginatedCursor<Item> extends AbstractPage<Item> implements Paginat
     };
   }
 }
+
+export interface PaginatedPageNumberResponse<Item> {
+  items: Array<Item>;
+
+  pages: number;
+
+  page: number;
+}
+
+export interface PaginatedPageNumberParams {
+  page?: number;
+
+  page_size?: number;
+}
+
+export class PaginatedPageNumber<Item>
+  extends AbstractPage<Item>
+  implements PaginatedPageNumberResponse<Item>
+{
+  items: Array<Item>;
+
+  pages: number;
+
+  page: number;
+
+  constructor(
+    client: LlamaCloudAdmin,
+    response: Response,
+    body: PaginatedPageNumberResponse<Item>,
+    options: FinalRequestOptions,
+  ) {
+    super(client, response, body, options);
+
+    this.items = body.items || [];
+    this.pages = body.pages || 0;
+    this.page = body.page || 0;
+  }
+
+  getPaginatedItems(): Item[] {
+    return this.items ?? [];
+  }
+
+  nextPageRequestOptions(): PageRequestOptions | null {
+    const currentPage = this.page;
+
+    if (currentPage >= this.pages) {
+      return null;
+    }
+
+    return {
+      ...this.options,
+      query: {
+        ...maybeObj(this.options.query),
+        page: currentPage + 1,
+      },
+    };
+  }
+}

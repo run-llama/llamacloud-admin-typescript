@@ -91,12 +91,11 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/quota-management.ts">QuotaConfiguration</a></code>
-- <code><a href="./src/resources/quota-management.ts">QuotaManagementListResponse</a></code>
 
 Methods:
 
 - <code title="post /api/v1/beta/quota-management">client.quotaManagement.<a href="./src/resources/quota-management.ts">create</a>({ ...params }) -> QuotaConfiguration</code>
-- <code title="get /api/v1/beta/quota-management">client.quotaManagement.<a href="./src/resources/quota-management.ts">list</a>({ ...params }) -> QuotaManagementListResponse</code>
+- <code title="get /api/v1/beta/quota-management">client.quotaManagement.<a href="./src/resources/quota-management.ts">list</a>({ ...params }) -> QuotaConfigurationsPaginatedPageNumber</code>
 - <code title="delete /api/v1/beta/quota-management/{quota_id}">client.quotaManagement.<a href="./src/resources/quota-management.ts">delete</a>(quotaID, { ...params }) -> void</code>
 
 # Admin
