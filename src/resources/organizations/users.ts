@@ -56,6 +56,12 @@ export class Users extends APIResource {
 
   /**
    * Get all users in an organization.
+   *
+   * Deprecated: use `GET /api/v2/organizations/{organization_id}/users`, which is
+   * paginated. This one collapses grants to members in memory after reading up to
+   * 10,000 of them, so a large organization silently loses members.
+   *
+   * @deprecated
    */
   listMembers(organizationID: string, options?: RequestOptions): APIPromise<UserListMembersResponse> {
     return this._client.get(path`/api/v1/organizations/${organizationID}/users`, options);
