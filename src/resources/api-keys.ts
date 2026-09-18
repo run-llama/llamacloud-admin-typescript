@@ -3,7 +3,6 @@
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { PagePromise, PaginatedCursor, type PaginatedCursorParams } from '../core/pagination';
-import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
@@ -58,16 +57,13 @@ export class APIKeys extends APIResource {
    *
    * @example
    * ```ts
-   * await client.apiKeys.delete(
+   * const apiKey = await client.apiKeys.delete(
    *   '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    * );
    * ```
    */
-  delete(apiKeyID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/v1/beta/api-keys/${apiKeyID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  delete(apiKeyID: string, options?: RequestOptions): APIPromise<APIKeyDeleteResponse> {
+    return this._client.delete(path`/api/v1/beta/api-keys/${apiKeyID}`, options);
   }
 }
 
@@ -114,6 +110,21 @@ export interface APIKey {
   updated_at?: string | null;
 }
 
+/**
+ * Confirmation that a resource was deleted.
+ */
+export interface APIKeyDeleteResponse {
+  /**
+   * Maximum seconds until cached information expires
+   */
+  cache_ttl_seconds: number;
+
+  /**
+   * Whether the resource was deleted
+   */
+  success: boolean;
+}
+
 export interface APIKeyCreateParams {
   /**
    * When the API key should expire. If not set, the key never expires.
@@ -143,6 +154,7 @@ export interface APIKeyListParams extends PaginatedCursorParams {
 export declare namespace APIKeys {
   export {
     type APIKey as APIKey,
+    type APIKeyDeleteResponse as APIKeyDeleteResponse,
     type APIKeysPaginatedCursor as APIKeysPaginatedCursor,
     type APIKeyCreateParams as APIKeyCreateParams,
     type APIKeyListParams as APIKeyListParams,

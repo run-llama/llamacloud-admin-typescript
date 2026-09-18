@@ -28,6 +28,7 @@ import { APIPromise } from './core/api-promise';
 import {
   APIKey,
   APIKeyCreateParams,
+  APIKeyDeleteResponse,
   APIKeyListParams,
   APIKeys,
   APIKeysPaginatedCursor,
@@ -878,6 +879,7 @@ export declare namespace LlamaCloudAdmin {
   export {
     APIKeys as APIKeys,
     type APIKey as APIKey,
+    type APIKeyDeleteResponse as APIKeyDeleteResponse,
     type APIKeysPaginatedCursor as APIKeysPaginatedCursor,
     type APIKeyCreateParams as APIKeyCreateParams,
     type APIKeyListParams as APIKeyListParams,
