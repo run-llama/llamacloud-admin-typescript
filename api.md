@@ -79,12 +79,13 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/api-keys.ts">APIKey</a></code>
+- <code><a href="./src/resources/api-keys.ts">APIKeyDeleteResponse</a></code>
 
 Methods:
 
 - <code title="post /api/v1/beta/api-keys">client.apiKeys.<a href="./src/resources/api-keys.ts">create</a>({ ...params }) -> APIKey</code>
 - <code title="get /api/v1/beta/api-keys">client.apiKeys.<a href="./src/resources/api-keys.ts">list</a>({ ...params }) -> APIKeysPaginatedCursor</code>
-- <code title="delete /api/v1/beta/api-keys/{api_key_id}">client.apiKeys.<a href="./src/resources/api-keys.ts">delete</a>(apiKeyID) -> void</code>
+- <code title="delete /api/v1/beta/api-keys/{api_key_id}">client.apiKeys.<a href="./src/resources/api-keys.ts">delete</a>(apiKeyID) -> APIKeyDeleteResponse</code>
 
 # QuotaManagement
 
