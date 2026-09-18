@@ -3,6 +3,7 @@
 export {
   APIKeys,
   type APIKey,
+  type APIKeyDeleteResponse,
   type APIKeyCreateParams,
   type APIKeyListParams,
   type APIKeysPaginatedCursor,
