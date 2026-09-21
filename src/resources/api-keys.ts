@@ -105,6 +105,11 @@ export interface APIKey {
   project_id?: string | null;
 
   /**
+   * Role capping what this key may do. Null if the key authorizes as its owner.
+   */
+  role?: 'admin' | 'agent_viewer' | 'viewer' | 'viewer_v2' | null;
+
+  /**
    * Update datetime
    */
   updated_at?: string | null;
@@ -139,6 +144,12 @@ export interface APIKeyCreateParams {
    * The project ID to associate with the API key.
    */
   project_id?: string | null;
+
+  /**
+   * Role capping what this key may do. A key can only ever be narrower than the user
+   * who created it, never broader. If not set, the key authorizes as its owner.
+   */
+  role?: 'admin' | 'agent_viewer' | 'viewer' | 'viewer_v2' | null;
 }
 
 export interface APIKeyListParams extends PaginatedCursorParams {
