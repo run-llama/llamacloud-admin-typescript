@@ -77,7 +77,8 @@ export class Organizations extends APIResource {
   }
 
   /**
-   * Get usage for a specific organization.
+   * Get usage for a specific organization. Pass `include=offers` to also compute
+   * upgrade-offer eligibility.
    */
   getUsage(
     organizationID: string,
@@ -432,6 +433,12 @@ export namespace UsageAndPlan {
 
     current_invoice_total_usd_cents?: number | null;
 
+    /**
+     * Whether upgrading to Pro now would earn the one-time Pro bonus credits. Only
+     * computed when requested with include=offers.
+     */
+    pro_upgrade_offer_eligible?: boolean;
+
     total_users?: number;
   }
 
@@ -508,6 +515,8 @@ export interface OrganizationListParams extends PaginatedCursorParams {
 
 export interface OrganizationGetUsageParams {
   get_current_invoice_total?: boolean;
+
+  include?: Array<'offers'>;
 }
 
 Organizations.Users = Users;
