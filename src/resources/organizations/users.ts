@@ -44,7 +44,8 @@ export class Users extends APIResource {
   }
 
   /**
-   * Assign a role to a user in an organization.
+   * Assign a role to a user in an organization, optionally limited to some of its
+   * projects.
    */
   assignRole(
     organizationID: string,
@@ -215,6 +216,12 @@ export interface UserAssignRoleParams {
    * The user's ID.
    */
   user_id: string;
+
+  /**
+   * Projects to limit the role to. Empty: organization-wide, per-project roles
+   * removed. Omitted: organization-wide, per-project roles kept.
+   */
+  project_ids?: Array<string> | null;
 }
 
 export interface UserListProjectsParams {
