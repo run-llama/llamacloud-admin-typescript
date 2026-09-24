@@ -422,10 +422,12 @@ export namespace UsageAndPlan {
    */
   export interface Usage {
     active_alerts?: Array<
+      | 'auto_reload_failed'
       | 'configured_spend_limit_exceeded'
       | 'free_credits_exhausted'
       | 'has_spending_alert'
       | 'internal_spending_alert'
+      | 'low_balance'
       | 'plan_spend_limit_exceeded'
       | 'plan_spend_limit_soft_alert'
     >;
