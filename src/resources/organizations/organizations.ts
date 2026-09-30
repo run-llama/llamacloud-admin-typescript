@@ -503,6 +503,11 @@ export interface OrganizationCreateParams {
    * The organization's display name.
    */
   name: string;
+
+  /**
+   * Also create the organization's default project.
+   */
+  create_default_project?: boolean;
 }
 
 export interface OrganizationUpdateParams {
