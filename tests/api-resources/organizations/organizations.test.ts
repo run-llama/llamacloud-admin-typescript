@@ -22,7 +22,7 @@ describe('resource organizations', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.organizations.create({ name: 'x' });
+    const response = await client.organizations.create({ name: 'x', create_default_project: true });
   });
 
   // Mock server tests are disabled
