@@ -192,11 +192,6 @@ export interface Role {
   name: string;
 
   /**
-   * The actual permissions of the role.
-   */
-  permissions: Array<Role.Permission>;
-
-  /**
    * Creation datetime
    */
   created_at?: string | null;
@@ -205,43 +200,6 @@ export interface Role {
    * Update datetime
    */
   updated_at?: string | null;
-}
-
-export namespace Role {
-  /**
-   * Schema for a permission.
-   */
-  export interface Permission {
-    /**
-     * Unique identifier
-     */
-    id: string;
-
-    /**
-     * Whether the permission is granted or not.
-     */
-    access: boolean;
-
-    /**
-     * A description for the permission.
-     */
-    description: string | null;
-
-    /**
-     * A name for the permission.
-     */
-    name: string;
-
-    /**
-     * Creation datetime
-     */
-    created_at?: string | null;
-
-    /**
-     * Update datetime
-     */
-    updated_at?: string | null;
-  }
 }
 
 export interface UsageAndPlan {
