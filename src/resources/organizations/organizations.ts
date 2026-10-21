@@ -380,6 +380,7 @@ export namespace UsageAndPlan {
    */
   export interface Usage {
     active_alerts?: Array<
+      | 'auto_reload_cap_reached'
       | 'auto_reload_failed'
       | 'configured_spend_limit_exceeded'
       | 'free_credits_exhausted'
