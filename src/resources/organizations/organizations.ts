@@ -78,7 +78,8 @@ export class Organizations extends APIResource {
 
   /**
    * Get usage for a specific organization. Pass `include=offers` to also compute
-   * upgrade-offer eligibility.
+   * upgrade-offer eligibility, and `include=payment_failures` to also list the
+   * plan's newest active payment failures.
    */
   getUsage(
     organizationID: string,
@@ -260,6 +261,12 @@ export namespace UsageAndPlan {
      */
     is_payment_failed?: boolean;
 
+    /**
+     * The newest active payment failures, newest first, at most 10; failure_count
+     * counts all of them. Only set when requested with include=payment_failures.
+     */
+    payment_failures?: Array<Plan.PaymentFailure> | null;
+
     recurring_credits?: Array<Plan.RecurringCredit> | null;
 
     /**
@@ -338,6 +345,21 @@ export namespace UsageAndPlan {
       end_date: string;
 
       start_date: string;
+    }
+
+    /**
+     * One active payment failure on the organization's record.
+     */
+    export interface PaymentFailure {
+      /**
+       * When the failure was recorded, in UTC
+       */
+      failed_at: string;
+
+      /**
+       * The Stripe invoice whose payment failed. Null when the record has none.
+       */
+      invoice_id?: string | null;
     }
 
     export interface RecurringCredit {
@@ -483,7 +505,7 @@ export interface OrganizationListParams extends PaginatedCursorParams {
 export interface OrganizationGetUsageParams {
   get_current_invoice_total?: boolean;
 
-  include?: Array<'offers'>;
+  include?: Array<'offers' | 'payment_failures'>;
 }
 
 Organizations.Users = Users;
