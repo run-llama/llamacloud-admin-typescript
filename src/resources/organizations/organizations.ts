@@ -242,6 +242,12 @@ export namespace UsageAndPlan {
     id?: string | null;
 
     /**
+     * US cents per 1,000 credits this organization pays for credit packs and
+     * auto-reloads now. Null when the plan buys no credits (Enterprise).
+     */
+    credit_pack_rate_usd_cents_per_1k?: number | null;
+
+    /**
      * The current billing period
      */
     current_billing_period?: Plan.CurrentBillingPeriod | null;
