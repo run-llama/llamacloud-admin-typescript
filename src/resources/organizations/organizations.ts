@@ -264,6 +264,12 @@ export namespace UsageAndPlan {
     failure_count?: number;
 
     /**
+     * Whether the organization's plan failed to load; if so, the other fields hold the
+     * default plan.
+     */
+    is_fallback?: boolean;
+
+    /**
      * Whether the organization has a failed payment that requires support contact
      */
     is_payment_failed?: boolean;
