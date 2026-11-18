@@ -71,7 +71,7 @@ describe('resource projects', () => {
         {
           name: 'name',
           organization_id: 'organization_id',
-          page_size: 0,
+          page_size: 1,
           page_token: 'page_token',
         },
         { path: '/_stainless_unknown_path' },
