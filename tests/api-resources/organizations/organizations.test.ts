@@ -63,7 +63,7 @@ describe('resource organizations', () => {
       client.organizations.list(
         {
           name: 'name',
-          page_size: 0,
+          page_size: 1,
           page_token: 'page_token',
         },
         { path: '/_stainless_unknown_path' },
