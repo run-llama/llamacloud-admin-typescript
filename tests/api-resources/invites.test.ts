@@ -49,7 +49,7 @@ describe('resource invites', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.invites.listMine(
-        { page_size: 0, page_token: 'page_token' },
+        { page_size: 1, page_token: 'page_token' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(LlamaCloudAdmin.NotFoundError);
